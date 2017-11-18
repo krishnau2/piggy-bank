@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @wishlist_account.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @wishlist_account.amount %>
+</p>
+
+<%= link_to 'Edit', edit_wishlist_account_path(@wishlist_account) %> |
+<%= link_to 'Back', wishlist_accounts_path %>
