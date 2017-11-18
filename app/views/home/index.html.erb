@@ -1,17 +1,39 @@
-<h1>Bank Accounts</h1> <%= link_to 'Create', new_bank_account_path %>
-<% @bank_accounts.each do |account| %>
-  <div>
-    <h2><%= account.name %></h2>
-    <h4><%= account.amount %></h4>
+<div class="row">
+  <div class="row" style="width: 100%">
+    <div class="col">
+      <h1>Bank Accounts</h1>
+    </div>
+    <div class="col-lg-6">
+      <%= link_to 'Create', new_bank_account_path %>
+    </div>
   </div>
-<% end %>
+  <div class="row">
+    <% @bank_accounts.each do |account| %>
+      <div class="card" style="margin-right: 20px;">    
+        <div class="card-body">
+          <h4 class="card-title"><%= account.name %></h4>
+          <p class="card-text">Balance: <%= account.amount %></p>
+        </div>
+      </div>  
+    <% end %>
+  </div>
+</div>
 
-<hr /> 
-
-<h1>Wishlists</h1>
-<% @wishlist_accounts.each do |account| %>
-  <div>
-    <h2><%= account.name %></h2>
-    <h4><%= account.amount %></h4>
-  </div>  
-<% end %>
+<div class="row" style="margin-top: 30px;">
+  <div class="row" style="width: 100%">
+    <h1>Wishlists</h1>
+  </div>
+  <div class="row">
+    <% @wishlist_accounts.each do |account| %>
+      <div class="card" style="margin-right: 20px;">    
+        <div style="width: 200px; height: 120px; background-color: #cdcdcd">
+          <%= image_tag(account.name.downcase, class: "wishlist-icon #{account.name.downcase}-icon")%>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><%= account.name %></h4>
+          <p class="card-text">Balance: <%= account.amount %></p>
+        </div>
+      </div>  
+    <% end %>
+  </div>
+</div>
