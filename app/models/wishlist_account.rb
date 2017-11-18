@@ -1,0 +1,4 @@
+class WishlistAccount < Account
+  
+  
+end
