@@ -1,6 +1,6 @@
 set :production, :prod
 set :unicorn_rack_env, "production"
-set :rails_env, "production"
+set :rails_env, :production
 set :migration_role, "db"
 
 role :app, %w{deploy@34.223.208.196} # Server IP Address
