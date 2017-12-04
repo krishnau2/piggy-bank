@@ -1,6 +1,6 @@
-set :production, :prod
+# set :production, :prod
 set :unicorn_rack_env, "production"
-set :rails_env, :production
+set :rails_env, "production"
 set :migration_role, "db"
 
 role :app, %w{deploy@34.223.208.196} # Server IP Address
@@ -8,8 +8,8 @@ role :web, %w{deploy@34.223.208.196}
 role :db, %w{deploy@34.223.208.196}
 
 set :ssh_options, {
-forward_agent: true,
-auth_methods: %w(publickey)
+  forward_agent: true,
+  auth_methods: %w(publickey)
 }
 
 server "34.223.208.196", user: "deploy", roles: %w{web app db}
