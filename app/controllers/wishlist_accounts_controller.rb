@@ -28,7 +28,7 @@ class WishlistAccountsController < ApplicationController
 
     respond_to do |format|
       if @wishlist_account.save
-        format.html { redirect_to @wishlist_account, notice: 'Wishlist account was successfully created.' }
+        format.html { redirect_to chart_of_accounts_path, notice: 'Wishlist account was successfully created.' }
         format.json { render :show, status: :created, location: @wishlist_account }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class WishlistAccountsController < ApplicationController
   def update
     respond_to do |format|
       if @wishlist_account.update(wishlist_account_params)
-        format.html { redirect_to @wishlist_account, notice: 'Wishlist account was successfully updated.' }
+        format.html { redirect_to chart_of_accounts_path, notice: 'Wishlist account was successfully updated.' }
         format.json { render :show, status: :ok, location: @wishlist_account }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class WishlistAccountsController < ApplicationController
   def destroy
     @wishlist_account.destroy
     respond_to do |format|
-      format.html { redirect_to wishlist_accounts_url, notice: 'Wishlist account was successfully destroyed.' }
+      format.html { redirect_to chart_of_accounts_path, notice: 'Wishlist account was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class WishlistAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wishlist_account_params
-      params.require(:wishlist_account).permit(:name, :amount)
+      params.require(:wishlist_account).permit(:name, :goal_amount)
     end
 end
