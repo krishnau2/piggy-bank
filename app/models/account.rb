@@ -1,6 +1,7 @@
 class Account < ApplicationRecord
+  has_many :bank_transactions
 
   def amount
-    1000
+    return nil
   end
 end
