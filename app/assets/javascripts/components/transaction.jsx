@@ -65,15 +65,15 @@ class Transaction extends React.Component {
                 onChange={this.handleOnchange} 
                 />            
             </div>
-            <div>
+            <div className="allocation-message">
               <p>Allocate this amount to your Goals/Wishlists below</p>
+              <p className="unallocated-msg">Unallocated amount: <span className="unallocated-amount">10000</span></p>
             </div>
-            <div>
-              <p>Unallocated amount: 10000</p>
-            </div>          
-            {this.wishlist()}
-            <div >
-              <input type="submit" value="SAVE" />
+            <div className="wishlist-items-container">
+              {this.wishlist()}
+            </div>
+            <div className="submit-button-container">
+              <input type="submit" className="btn btn-outline-success btn-lg" value="SAVE" />
             </div>
           </form>
         </div>

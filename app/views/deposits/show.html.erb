@@ -3,8 +3,9 @@
 <div class="left-section">
   <ul>
     <% @bank_accounts.each do |bank| %>
+      <% class_name = bank.name == @selected_bank.name ? 'selected-bank-account' : '' %>
         <%= link_to(deposit_path(bank.slug)) do %>
-          <li><%= bank.name %></li>
+          <li class="<%= class_name %>" ><%= bank.name %></li>
         <% end %>
     <% end %>
   </ul>
