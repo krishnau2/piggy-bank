@@ -1,0 +1,14 @@
+<h1 class="page-title"><%= @title %></h1>
+
+<div class="left-section">
+  <ul>
+    <% @bank_accounts.each do |bank| %>
+        <%= link_to(deposit_path(bank.slug)) do %>
+          <li><%= bank.name %></li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="right-section">
+  <%= react_component("Transaction", {title: @title, wishlist: @wishlist_accounts, selectedBank: @selected_bank}) %>
+</div>
