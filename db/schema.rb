@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220114442) do
+ActiveRecord::Schema.define(version: 20180126175223) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "type"
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20171220114442) do
     t.float "goal_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+  end
+
+  create_table "bank_transactions", force: :cascade do |t|
+    t.integer "account_id"
+    t.decimal "deposit_amount"
+    t.decimal "withdrawal_amount"
+    t.integer "from_account"
+    t.integer "to_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_bank_transactions_on_account_id"
   end
 
 end
