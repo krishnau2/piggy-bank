@@ -78,7 +78,7 @@ body {
   .wishlist-items-container{
     float: left;
     .wishlist-item{
-      width: 250px;
+      width: 200px;
       float: left;
       margin-right: 20px;
       margin-top: 20px;
@@ -93,6 +93,7 @@ body {
       .wishlist-item-input{
         input {
           text-align: right;
+          width: 150px;
         }
       }
     }
