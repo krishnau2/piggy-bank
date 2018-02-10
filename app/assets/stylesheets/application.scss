@@ -2,9 +2,16 @@
 @import "home";
 
 $border-color: #dedede;
+$green: #28a745;
 
 body {
   background-color: #ecf0f1
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
 .container{
   margin-bottom: 20px;
@@ -52,6 +59,11 @@ body {
   padding-left: 20px;
   padding-top: 20px;
   border-top: 1px solid $border-color;
+  .message-container{
+    background-color: $green;
+    color: white;
+    text-align: center;
+  }
   .amount-container{
     p {
       font-size: 26px;
@@ -63,6 +75,10 @@ body {
       font-size: 25px;
       padding-right: 10px;
       margin-left: 50px;
+    }
+    input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #dedede;
+      opacity: 1; /* Firefox */
     }
   }
   .allocation-message{
@@ -94,6 +110,10 @@ body {
         input {
           text-align: right;
           width: 150px;
+        }
+        input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: #dedede;
+          opacity: 1; /* Firefox */
         }
       }
     }

@@ -6,20 +6,13 @@ class Transaction extends React.Component {
     this.handleAllocationChange = this.handleAllocationChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.wishlist = this.wishlist.bind(this);
-    this.goalsInitialState = this.goalsInitialState.bind(this);
+    this.resetStateValue = this.resetStateValue.bind(this);
 
     this.state = {
       depositAmount: 0,
-      goalAllocation: this.goalsInitialState()
+      goalAllocation: {},
+      messageDisplay: false
     };
-  }
-
-  goalsInitialState(){
-    let goalState = {};
-    this.props.wishlist.map((item)=>
-      goalState[item.name] = 0
-    );
-    return goalState;
   }
 
   handleOnchange(e) {
@@ -34,9 +27,10 @@ class Transaction extends React.Component {
   
   wishlist(){
     wishlistItemComponent = this.props.wishlist.map((item) =>
-      <WishlistItem 
+      <WishlistItem
+        key={item.id}
         item={item}
-        value={this.state.goalAllocation[item.name]}
+        value={this.state.goalAllocation[item.id]}
         handleAllocationChange={this.handleAllocationChange} />
     );
     return wishlistItemComponent
@@ -44,23 +38,40 @@ class Transaction extends React.Component {
 
   onFormSubmit(e){
     e.preventDefault();
-    console.info('on Form submit.....');
     $.post('/deposits',
-      {deposits: this.state}
+      {deposits: this.state,
+        selected_bank_id: this.props.selectedBank.id
+      }
     ).done(function(data){
-      console.info(data);
+      console.info("data", data);
+      this.resetStateValue();
+    }.bind(this)).fail(function(e){
+      console.error("error")
     });
+  }
+
+  resetStateValue(){
+    console.log("in reset state value")
+    this.setState({
+      depositAmount: 0,
+      messageDisplay: true
+    });
+    let goalAllocation = {...this.state.goalAllocation}
+    Object.keys(goalAllocation).map(key =>
+      this.handleAllocationChange(key, "")
+    )
   }
 
   render() {
     return (
         <div>
+          <Message display={this.state.messageDisplay} />
           <form onSubmit={this.onFormSubmit}>
             <div className="amount-container">
               <p>Amount you wish to keep in {this.props.selectedBank.name}</p>
               <input type="text"
                 name="depositAmount" 
-                value={this.state.amount} 
+                value={this.state.depositAmount}
                 placeholder="10000"
                 onChange={this.handleOnchange} 
                 />            

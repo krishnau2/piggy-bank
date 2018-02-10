@@ -1,4 +1,4 @@
-<h1 class="page-title"><%= @title %></h1>
+<h1 class="page-title">Deposit Action</h1>
 
 <div class="left-section">
   <ul>
@@ -11,5 +11,5 @@
   </ul>
 </div>
 <div class="right-section">
-  <%= react_component("Transaction", {title: @title, wishlist: @wishlist_accounts, selectedBank: @selected_bank}) %>
+  <%= react_component("Transaction", {wishlist: @wishlist_accounts, selectedBank: @selected_bank}) %>
 </div>

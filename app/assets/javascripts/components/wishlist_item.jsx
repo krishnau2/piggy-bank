@@ -1,10 +1,6 @@
 class WishlistItem extends React.Component {
     constructor(props){
       super(props);
-      this.state = {
-        depositAmount: "",        
-      };
-  
       this.handleOnchange = this.handleOnchange.bind(this);    
     }
   
@@ -38,8 +34,9 @@ class WishlistItem extends React.Component {
             </div>
             <div className="wishlist-item-input">
               <input type="text" 
-                name={this.props.item.name} 
+                name={this.props.item.id}
                 value={this.props.value}
+                placeholder="Share..."
                 onChange={this.handleOnchange}/>
             </div>
           </div>
