@@ -24,7 +24,7 @@
     <% @wishlist_accounts.each do |account| %>
       <div class="card" style="margin-right: 20px;">    
         <div style="width: 200px; height: 120px; background-color: #cdcdcd">
-          <%= image_tag(account.name.downcase, class: "wishlist-icon #{account.name.downcase}-icon")%>
+          <%= image_tag(account.slug, class: "wishlist-icon #{account.slug}-icon")%>
         </div>
         <div class="card-body">
           <h4 class="card-title"><%= account.name %></h4>

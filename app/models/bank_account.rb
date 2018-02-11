@@ -1,7 +1,7 @@
 class BankAccount < Account
   
   def amount
-    BankTransaction.total_withdrawal(self)
+    BankTransaction.total_deposit(self) - BankTransaction.total_withdrawal(self)
   end
 
 end

@@ -31,6 +31,7 @@ class Transaction extends React.Component {
         key={item.id}
         item={item}
         value={this.state.goalAllocation[item.id]}
+        selectedBank={this.props.selectedBank.name}
         handleAllocationChange={this.handleAllocationChange} />
     );
     return wishlistItemComponent

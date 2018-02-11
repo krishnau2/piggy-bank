@@ -1,7 +1,7 @@
-class DepositsController < ApplicationController
+class WithdrawsController < ApplicationController
   def index
     first_bank_account = BankAccount.first
-    redirect_to deposit_path(first_bank_account.slug)
+    redirect_to withdraw_path(first_bank_account.slug)
   end
 
   def show
@@ -13,9 +13,9 @@ class DepositsController < ApplicationController
 
   def create
     puts params.inspect
-    # {"deposits"=>
+    # {"withdrawal"=>
     #   {
-    #     "depositAmount"=>"10000",
+    #     "withdrawalAmount"=>"10000",
     #     "goalAllocation"=>
     #      {"3"=>"5000", "4"=>"2000", "8"=>"2000", "9"=>"1000"}
     #   },
@@ -25,13 +25,13 @@ class DepositsController < ApplicationController
     @bank_account = BankAccount.find(params[:selected_bank_id])
     bank_transaction = BankTransaction.new()
     bank_transaction.account = @bank_account
-    bank_transaction.deposit_amount = params[:deposits][:depositAmount]
+    bank_transaction.withdrawal_amount = params[:withdrawal][:withdrawalAmount]
 
-    params[:deposits][:goalAllocation].each do |allocation_id, allocaiton_amount|
+    params[:withdrawal][:goalAllocation].each do |allocation_id, allocaiton_amount|
       allocation_account = WishlistAccount.find(allocation_id.to_i)
       allocation_transaction = AllocationTransaction.new()
       allocation_transaction.account = allocation_account
-      allocation_transaction.deposit_amount = allocaiton_amount
+      allocation_transaction.withdrawal_amount = allocaiton_amount
 
       bank_transaction.allocation_transactions << allocation_transaction
     end

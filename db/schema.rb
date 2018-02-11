@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180204171641) do
   create_table "allocation_transactions", force: :cascade do |t|
     t.integer "account_id"
     t.integer "bank_transaction_id"
-    t.decimal "deposite_amount"
+    t.decimal "deposit_amount"
     t.decimal "withdrawal_amount"
     t.integer "from_account"
     t.integer "to_account"

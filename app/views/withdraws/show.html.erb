@@ -1,0 +1,15 @@
+<h1 class="page-title">Withdraw Action</h1>
+
+<div class="left-section">
+  <ul>
+    <% @bank_accounts.each do |bank| %>
+      <% class_name = bank.name == @selected_bank.name ? 'selected-bank-account' : '' %>
+        <%= link_to(withdraw_path(bank.slug)) do %>
+          <li class="<%= class_name %>" ><%= bank.name %></li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+<div class="right-section">
+  <%= react_component("WithdrawTransaction", {wishlist: @wishlist_accounts, selectedBank: @selected_bank}) %>
+</div>

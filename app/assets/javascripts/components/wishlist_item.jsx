@@ -26,7 +26,7 @@ class WishlistItem extends React.Component {
                     <td>25000</td>
                   </tr>
                   <tr>
-                    <td>In HDFC:</td>
+                    <td>In {this.props.selectedBank}:</td>
                     <td>10000</td>
                   </tr>
                 </tbody>
