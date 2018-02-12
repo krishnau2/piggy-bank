@@ -9,7 +9,7 @@ class Transaction extends React.Component {
     this.resetStateValue = this.resetStateValue.bind(this);
 
     this.state = {
-      depositAmount: 0,
+      depositAmount: '',
       goalAllocation: {},
       messageDisplay: false
     };
