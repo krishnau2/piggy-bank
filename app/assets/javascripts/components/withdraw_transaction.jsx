@@ -55,12 +55,9 @@ class WithdrawTransaction extends React.Component {
       console.log("in reset state value")
       this.setState({
         withdrawalAmount: 0,
-        messageDisplay: true
+        messageDisplay: true,
+        goalAllocation: {}
       });
-      let goalAllocation = {...this.state.goalAllocation}
-      Object.keys(goalAllocation).map(key =>
-        this.handleAllocationChange(key, "")
-      )
     }
   
     render() {

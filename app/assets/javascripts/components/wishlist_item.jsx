@@ -35,7 +35,7 @@ class WishlistItem extends React.Component {
             <div className="wishlist-item-input">
               <input type="text" 
                 name={this.props.item.id}
-                value={this.props.value}
+                value={this.props.value || ''}
                 placeholder="Share..."
                 onChange={this.handleOnchange}/>
             </div>

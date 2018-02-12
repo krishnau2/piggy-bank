@@ -52,15 +52,11 @@ class Transaction extends React.Component {
   }
 
   resetStateValue(){
-    console.log("in reset state value")
     this.setState({
       depositAmount: 0,
-      messageDisplay: true
+      messageDisplay: true,
+      goalAllocation: {}
     });
-    let goalAllocation = {...this.state.goalAllocation}
-    Object.keys(goalAllocation).map(key =>
-      this.handleAllocationChange(key, "")
-    )
   }
 
   render() {
