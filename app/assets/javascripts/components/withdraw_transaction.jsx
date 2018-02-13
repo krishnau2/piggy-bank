@@ -2,27 +2,50 @@ class WithdrawTransaction extends React.Component {
     constructor(props){
       super(props);
       
-      this.handleOnchange = this.handleOnchange.bind(this);
-      this.handleAllocationChange = this.handleAllocationChange.bind(this);
-      this.onFormSubmit = this.onFormSubmit.bind(this);
-      this.wishlist = this.wishlist.bind(this);
-      this.resetStateValue = this.resetStateValue.bind(this);
-  
-      this.state = {
-        withdrawalAmount: 0,
-        goalAllocation: {},
-        messageDisplay: false
-      };
+        this.handleAmountChange = this.handleAmountChange.bind(this);
+        this.handleAllocationChange = this.handleAllocationChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.wishlist = this.wishlist.bind(this);
+        this.resetStateValue = this.resetStateValue.bind(this);
+        this.calculateAllocationSum = this.calculateAllocationSum.bind(this);
+
+        this.state = {
+            withdrawalAmount: '',
+            goalAllocation: {},
+            unallocatedAmount: 0,
+            messageDisplay: false
+        };
     }
   
-    handleOnchange(e) {
-      this.setState({[e.target.name]: e.target.value});
-    }
+    handleAmountChange(e) {
+        let amount = e.target.value;
+        let unallocatedAmount = 0;
+
+        unallocatedAmount = amount - this.calculateAllocationSum(this.state.goalAllocation);
+        this.setState(
+          {[e.target.name]: amount,
+            unallocatedAmount: unallocatedAmount,
+          });
+      }
   
     handleAllocationChange(key, val){
-      let goalAllocation = {...this.state.goalAllocation}
-      goalAllocation[key] = val
-      this.setState({goalAllocation});
+        let goalAllocation = {...this.state.goalAllocation}
+        let unallocatedAmount = 0;
+
+        goalAllocation[key] = val;
+        unallocatedAmount = this.state.withdrawalAmount - this.calculateAllocationSum(goalAllocation);
+
+        this.setState({goalAllocation: goalAllocation, unallocatedAmount: unallocatedAmount});
+    }
+
+    calculateAllocationSum(allocations){
+        let allocationSum = 0;
+        Object.keys(allocations).map(key => {
+            if(allocations[key] !== ''){
+                allocationSum += parseInt(allocations[key])
+            }
+        });
+        return allocationSum;
     }
     
     wishlist(){
@@ -56,6 +79,7 @@ class WithdrawTransaction extends React.Component {
       this.setState({
         withdrawalAmount: 0,
         messageDisplay: true,
+        unallocatedAmount: 0,
         goalAllocation: {}
       });
     }
@@ -71,12 +95,14 @@ class WithdrawTransaction extends React.Component {
                   name="withdrawalAmount" 
                   value={this.state.withdrawalAmount}
                   placeholder="10000"
-                  onChange={this.handleOnchange} 
+                  onChange={this.handleAmountChange}
                   />            
               </div>
               <div className="allocation-message">
                 <p>Allocate this amount to your Goals/Wishlists below</p>
-                <p className="unallocated-msg">Unallocated amount: <span className="unallocated-amount">10000</span></p>
+                <p className="unallocated-msg">
+                    Unallocated amount: <span className="unallocated-amount">{this.state.unallocatedAmount}</span>
+                </p>
               </div>
               <div className="wishlist-items-container">
                 {this.wishlist()}
