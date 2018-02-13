@@ -4,8 +4,7 @@ class WishlistItem extends React.Component {
       this.handleOnchange = this.handleOnchange.bind(this);    
     }
   
-    handleOnchange(e) {      
-      // this.props.handleShareChange({[e.target.name]: e.target.value});
+    handleOnchange(e) {
       this.props.handleAllocationChange(e.target.name, e.target.value);
     }
     
