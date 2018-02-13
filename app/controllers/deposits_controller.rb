@@ -8,7 +8,7 @@ class DepositsController < ApplicationController
     @selected_bank = BankAccount.find_by(slug: params[:id])
 
     @bank_accounts = BankAccount.all
-    @wishlist_accounts = WishlistAccount.all
+    @wishlist_accounts = WishlistAccount.all_details
   end
 
   def create

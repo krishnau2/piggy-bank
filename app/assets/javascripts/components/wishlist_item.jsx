@@ -22,7 +22,7 @@ class WishlistItem extends React.Component {
                   </tr>
                   <tr>
                     <td>Total:</td>
-                    <td>25000</td>
+                    <td>{this.props.item.net_amount}</td>
                   </tr>
                   <tr>
                     <td>In {this.props.selectedBank}:</td>
