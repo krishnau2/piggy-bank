@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 20180204171641) do
     t.integer "bank_transaction_id"
     t.decimal "deposit_amount"
     t.decimal "withdrawal_amount"
-    t.integer "from_account"
-    t.integer "to_account"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_allocation_transactions_on_account_id"
